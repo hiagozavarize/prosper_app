@@ -1,69 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:prosper/utils/app_colors.dart';
+import 'package:prosper/utils/common.dart';
+import 'package:prosper/welcome.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProsperApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ProsperApp extends StatelessWidget {
+  const ProsperApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      navigatorKey: navigatorKey,
+      routes: {
+        Welcome.screenName: (_) => const Welcome(),
+      },
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+        textTheme: GoogleFonts.poppinsTextTheme(),
+        scaffoldBackgroundColor: AppColors.scaffoldBackGroundColor,
+        useMaterial3: false,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primaryColor,
+            padding: const EdgeInsets.symmetric(vertical: 26.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40.0),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            textStyle: const TextStyle(
+              fontSize: 32.0,
+              fontWeight: FontWeight.bold,
             ),
-          ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
