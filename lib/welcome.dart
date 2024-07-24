@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'utils/utils.dart';
 
 class Welcome extends StatelessWidget {
-  static const String screenName = "/";
+  static const String screenName = "/welcome";
   const Welcome({super.key});
 
   @override

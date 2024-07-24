@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prosper/gif_screen.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/common.dart';
 import 'package:prosper/welcome.dart';
@@ -15,7 +16,9 @@ class ProsperApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorKey,
+      initialRoute: GifScreen.screenName,
       routes: {
+        GifScreen.screenName: (_) => const GifScreen(),
         Welcome.screenName: (_) => const Welcome(),
       },
       theme: ThemeData(
