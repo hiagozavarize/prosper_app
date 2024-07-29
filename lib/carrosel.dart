@@ -14,7 +14,6 @@ class _CarroselState extends State<Carrosel> {
   PageController _pageController = PageController();
   int _currentPage = 0;
 
-  // Lista de páginas com as imagens
   final List<Widget> _pages = [
     SizedBox(
       child: Column(
@@ -74,7 +73,6 @@ class _CarroselState extends State<Carrosel> {
       ),
     ),
   ];
-  // Função para avançar para a próxima página
   void _nextPage() {
     if (_currentPage < _pages.length - 1) {
       _pageController.animateToPage(
@@ -100,7 +98,6 @@ class _CarroselState extends State<Carrosel> {
             child: PageView(
               controller: _pageController,
               onPageChanged: (int page) {
-                // Atualiza a página atual quando o usuário desliza
                 setState(() {
                   _currentPage = page;
                 });
@@ -134,7 +131,6 @@ class _CarroselState extends State<Carrosel> {
     );
   }
 
-  // Widget para construir os indicadores de páginas (bullets)
   Widget _buildBullets() {
     return Padding(
       padding: const EdgeInsets.all(8),
@@ -147,7 +143,6 @@ class _CarroselState extends State<Carrosel> {
             height: 10,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              // Cor do indicador muda conforme a página atual
               color: _currentPage == index ? Colors.grey : Colors.white,
             ),
           );
