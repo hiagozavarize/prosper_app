@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prosper/carrosel.dart';
 import 'utils/utils.dart';
 
 class Welcome extends StatelessWidget {
@@ -42,7 +43,9 @@ class Welcome extends StatelessWidget {
               ),
               const SizedBox(height: 200),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  navigatorKey.currentState!.pushNamed(Carrosel.screenName);
+                },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),

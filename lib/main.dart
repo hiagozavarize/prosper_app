@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prosper/carrosel.dart';
 import 'package:prosper/gif_screen.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/common.dart';
@@ -20,6 +21,7 @@ class ProsperApp extends StatelessWidget {
       routes: {
         GifScreen.screenName: (_) => const GifScreen(),
         Welcome.screenName: (_) => const Welcome(),
+        Carrosel.screenName: (_) => const Carrosel(),
       },
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
