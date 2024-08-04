@@ -1,7 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/app_images.dart';
+import 'package:prosper/utils/common.dart';
+import 'package:prosper/welcome.dart';
 import 'package:prosper/widgets/default_button.dart';
+import 'package:prosper/widgets/google_button.dart';
 
 class LoginPage extends StatefulWidget {
   static const String screenName = '/login';
@@ -55,15 +60,79 @@ class _LoginPageState extends State<LoginPage> {
                 text: 'Entrar',
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
-                    // Realize a ação de login aqui
+                    // Realiza a ação de login aqui
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Processando login...')),
                     );
                   }
                 },
               ),
-              SizedBox(height: 20,),
-              _buildAccountRegister(),
+              const SizedBox(height: 30,),
+              Center(
+                child: RichText(
+                  text: TextSpan(
+                    text: "Ainda não tem uma conta?",
+                    style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                    children: [
+                      TextSpan(
+                        text: " Cadastre-se",
+                        style: GoogleFonts.poppins(
+                          color: AppColors.primaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          //só para testar o funcionamento
+                          //adicionar rota de tela dee cadastro aqui
+                          navigatorKey.currentState!.pushNamed(Welcome.screenName);
+                        }
+                      )
+                    ]
+                  )
+                ),
+              ),
+              const SizedBox(height: 15),
+              Row(
+              children: [
+                Expanded(
+                  child: Divider(
+                    color: Colors.white,
+                    thickness: 1,
+                    indent: 35,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: Text(
+                    'ou',
+                    style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                  ),
+                ),
+                Expanded(
+                  child: Divider(
+                    color: Colors.white,
+                    thickness: 1,
+                    endIndent: 35,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 50),
+            Center(
+              child: GoogleButton(
+                //adicionar validação e coleta de dados para cadastro com o Google aqui
+                onPressed: () {}
+              )
+            )
             ],
           ),
         ),
@@ -145,36 +214,15 @@ class _LoginPageState extends State<LoginPage> {
         child: GestureDetector(
           onTap: () {
             // Ação quando o texto "Esqueceu sua senha?" for clicado
-            print("clicado");
           },
           child: Text(
             'Esqueceu sua senha?',
             style: TextStyle(
                 color: AppColors.primaryColor,
                 decoration: TextDecoration.underline,
-                fontWeight: FontWeight.w800,
-                fontSize: 15),
+                fontWeight: FontWeight.w500,
+                fontSize: 14),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAccountRegister() {
-    return Center(
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              
-              text: 'Ainda não tem uma conta? ',
-              style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
         ),
       ),
     );
