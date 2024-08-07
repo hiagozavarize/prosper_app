@@ -4,4 +4,5 @@ abstract class AppImages {
   static const String illustration1 = "lib/assets/illustration01.png";
   static const String illustration2 = "lib/assets/illustration02.png";
   static const String illustration3 = "lib/assets/illustration03.png";
+  static const String googleLogo = "lib/assets/google_icon.png";
 }
