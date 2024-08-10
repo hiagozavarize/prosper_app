@@ -18,15 +18,15 @@ class ProsperApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //navigatorKey: navigatorKey,
-      //initialRoute: GifScreen.screenName,
-      //routes: {
+      navigatorKey: navigatorKey,
+      initialRoute: GifScreen.screenName,
+      routes: {
         //colocar todas rotas para as outras páginas aqui:
-        //GifScreen.screenName: (_) => const GifScreen(),
-        //Welcome.screenName: (_) => const Welcome(),
-        //Carrosel.screenName: (_) => const Carrosel(),
-        //LoginPage.screenName: (_) => const LoginPage(),
-      //},
+        GifScreen.screenName: (_) => const GifScreen(),
+        Welcome.screenName: (_) => const Welcome(),
+        Carrosel.screenName: (_) => const Carrosel(),
+        LoginPage.screenName: (_) => const LoginPage(),
+      },
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
         scaffoldBackgroundColor: AppColors.scaffoldBackGroundColor,
@@ -46,7 +46,6 @@ class ProsperApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const NavBar(),
     );
   }
 }
