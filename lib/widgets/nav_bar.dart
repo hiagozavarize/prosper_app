@@ -36,11 +36,6 @@ class _NavBarState extends State<NavBar> {
         bottom: false,
         child: Stack(
           children: [
-            Positioned.fill(
-              child: Container(
-                color: Colors.white,
-              ),
-            ),
             Positioned(
               bottom: 0,
               left: 0,
