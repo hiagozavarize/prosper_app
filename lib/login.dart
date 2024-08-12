@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prosper/account_registration.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/app_images.dart';
 import 'package:prosper/utils/common.dart';
@@ -87,9 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          //só para testar o funcionamento
-                          //adicionar rota de tela dee cadastro aqui
-                          navigatorKey.currentState!.pushNamed(Welcome.screenName);
+                          navigatorKey.currentState!.pushNamed(AccountRegistration.screenName);
                         }
                       )
                     ]
@@ -227,4 +226,5 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+  
 }
