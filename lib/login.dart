@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:prosper/account_registration.dart';
+import 'package:prosper/home.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/app_images.dart';
+import 'package:prosper/utils/common.dart';
 import 'package:prosper/widgets/default_button.dart';
 import 'package:prosper/widgets/google_button.dart';
 
@@ -34,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     context.loaderOverlay.hide();
+    navigatorKey.currentState!.pushNamed(HomeScreen.screenName);
   }
 
   @override
@@ -96,8 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.of(context)
-                                  .pushNamed(AccountRegistration.screenName);
+                              navigatorKey.currentState!.pushNamed(AccountRegistration.screenName);
                             },
                         ),
                       ],

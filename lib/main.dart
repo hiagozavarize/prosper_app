@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prosper/account_registration.dart';
 import 'package:prosper/carrosel.dart';
 import 'package:prosper/gif_screen.dart';
+import 'package:prosper/home.dart';
 import 'package:prosper/login.dart';
 import 'package:prosper/widgets/nav_bar.dart';
 import 'package:prosper/utils/app_colors.dart';
@@ -28,6 +29,7 @@ class ProsperApp extends StatelessWidget {
         Carrosel.screenName: (_) => const Carrosel(),
         LoginPage.screenName: (_) => const LoginPage(),
         AccountRegistration.screenName: (_) => AccountRegistration(),
+        HomeScreen.screenName: (_) => HomeScreen(),
       },
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
