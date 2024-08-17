@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prosper/account_registration.dart';
 import 'package:prosper/carrosel.dart';
 import 'package:prosper/gif_screen.dart';
 import 'package:prosper/ranking.dart';
@@ -28,6 +29,7 @@ class ProsperApp extends StatelessWidget {
         Carrosel.screenName: (context) => const Carrosel(),
         Ranking.screenName: (context) => const Ranking(),
         LoginPage.screenName: (_) => const LoginPage(),
+        AccountRegistration.screenName: (_) => AccountRegistration(),
       },
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
