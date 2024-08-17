@@ -2,8 +2,7 @@ import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:loader_overlay/loader_overlay.dart";
-import "package:lottie/lottie.dart";
-import "package:prosper/utils/app_colors.dart";
+import "package:prosper/login.dart";
 import "package:prosper/utils/app_images.dart";
 import "package:prosper/widgets/default_button.dart";
 import "package:prosper/widgets/google_button.dart";
@@ -19,114 +18,103 @@ class AccountRegistration extends StatefulWidget {
 class _AccountRegistrationState extends State<AccountRegistration> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _senha;
-  String? _confirmationPassword;
 
   void _submit() async {
-    context.loaderOverlay.show(); // Mostrar a sobreposição
+    if (!_formKey.currentState!.validate()) return;
 
-    // Simulando uma operação assíncrona
-    await Future.delayed(Duration(seconds: 3));
+    context.loaderOverlay.show(); 
 
-    if (_formKey.currentState!.validate()) {
-      // Aqui você pode adicionar a lógica para cadastrar a conta
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Cadastro realizado com sucesso!')),
-      );
-    }
-    context.loaderOverlay.hide(); // Ocultar a sobreposição
+    await Future.delayed(const Duration(seconds: 3));
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Cadastro realizado com sucesso!')),
+    );
+
+    context.loaderOverlay.hide(); 
+    Navigator.of(context).pushNamed(LoginPage.screenName);
   }
 
   @override
   Widget build(BuildContext context) {
     return LoaderOverlay(
-      useDefaultLoading: false,
-      overlayWidgetBuilder: (progress) => Center(
-          child: SizedBox(
-            width: 100,
-            height: 100,
-            child: Lottie.asset(
-              'lib/assets/prosper_loading.json',
-              fit: BoxFit.contain, 
-              width: 100,
-              height: 100,
-            ),
-        ),
-        ),
+      useDefaultLoading: true,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.scaffoldBackGroundColor,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
+        extendBodyBehindAppBar: true,
         body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(35),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Image.asset(
-                      AppImages.logoProsper,
-                      width: 100,
-                      height: 154,
+          padding: const EdgeInsets.all(35),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Image.asset(
+                    AppImages.logoProsper,
+                    width: 100,
+                    height: 154,
+                  ),
+                ),
+              ),
+              Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _buildNameField(),
+                    const SizedBox(height: 10),
+                    _buildEmailField(),
+                    const SizedBox(height: 10),
+                    _buildPasswordField(),
+                    const SizedBox(height: 10),
+                    _buildPasswordConfirmationField(),
+                    const SizedBox(height: 50),
+                    DefaultButton(
+                      text: "Cadastrar",
+                      onPressed: _submit,
                     ),
-                  ),
-                ),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _buildNameField(),
-                      SizedBox(height: 10),
-                      _buildEmailField(),
-                      SizedBox(height: 10),
-                      _buildPasswordField(),
-                      SizedBox(height: 10),
-                      _buildPasswordConfirmationField(),
-                      SizedBox(height: 50),
-                      DefaultButton(
-                        text: "Cadastrar",
-                        onPressed: _submit,
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Divider(
+                    const SizedBox(height: 20),
+                    Row(
+                      children: [
+                        const Expanded(
+                          child: Divider(
+                            color: Colors.white,
+                            thickness: 1,
+                            indent: 35,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Text(
+                            'ou',
+                            style: GoogleFonts.poppins(
                               color: Colors.white,
-                              thickness: 1,
-                              indent: 35,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15),
-                            child: Text(
-                              'ou',
-                              style: GoogleFonts.poppins(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                        ),
+                        const Expanded(
+                          child: Divider(
+                            color: Colors.white,
+                            thickness: 1,
+                            endIndent: 35,
                           ),
-                          Expanded(
-                            child: Divider(
-                              color: Colors.white,
-                              thickness: 1,
-                              endIndent: 35,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      GoogleButton(onPressed: () {}),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 45),
+                    Center(
+                      child: GoogleButton(onPressed: () {}),
+                    )
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -136,7 +124,7 @@ class _AccountRegistrationState extends State<AccountRegistration> {
   Widget _buildNameField() {
     return TextFormField(
       style: const TextStyle(color: Colors.white),
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Nome",
         hintText: "Digite seu nome",
         hintStyle: TextStyle(color: Colors.white54),
@@ -149,7 +137,7 @@ class _AccountRegistrationState extends State<AccountRegistration> {
         ),
       ),
       validator: (String? value) {
-        if (value == null || value.isEmpty) {
+        if (value == null || value.trim().isEmpty) {
           return 'Por favor, digite seu nome';
         }
         return null;
@@ -160,7 +148,7 @@ class _AccountRegistrationState extends State<AccountRegistration> {
   Widget _buildEmailField() {
     return TextFormField(
       style: const TextStyle(color: Colors.white),
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Email",
         hintText: "Digite seu Email",
         hintStyle: TextStyle(color: Colors.white54),
@@ -173,10 +161,10 @@ class _AccountRegistrationState extends State<AccountRegistration> {
         ),
       ),
       validator: (String? value) {
-        if (value == null || value.isEmpty) {
+        if (value == null || value.trim().isEmpty) {
           return 'Por favor, digite seu email';
         }
-        if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+        if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value.trim())) {
           return 'Por favor, digite um e-mail válido';
         }
         return null;
@@ -186,21 +174,22 @@ class _AccountRegistrationState extends State<AccountRegistration> {
 
   Widget _buildPasswordField() {
     return TextFormField(
-      style: TextStyle(color: Colors.white),
-      decoration: InputDecoration(
+      obscureText: true,
+      style: const TextStyle(color: Colors.white),
+      decoration: const InputDecoration(
         labelText: "Senha",
         hintText: "Digite sua senha",
         hintStyle: TextStyle(color: Colors.white54),
         labelStyle: TextStyle(color: Colors.white),
-        enabledBorder: const UnderlineInputBorder(
+        enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
-        focusedBorder: const UnderlineInputBorder(
+        focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
       ),
       validator: (value) {
-        if (value == null || value.isEmpty) {
+        if (value == null || value.trim().isEmpty) {
           return 'Por favor, digite sua senha';
         }
         _senha = value;
@@ -211,27 +200,27 @@ class _AccountRegistrationState extends State<AccountRegistration> {
 
   Widget _buildPasswordConfirmationField() {
     return TextFormField(
-      style: TextStyle(color: Colors.white),
-      decoration: InputDecoration(
+      obscureText: true,
+      style: const TextStyle(color: Colors.white),
+      decoration: const InputDecoration(
         labelText: "Confirmar senha",
         hintText: "Confirme sua senha",
         hintStyle: TextStyle(color: Colors.white54),
         labelStyle: TextStyle(color: Colors.white),
-        enabledBorder: const UnderlineInputBorder(
+        enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
-        focusedBorder: const UnderlineInputBorder(
+        focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
       ),
       validator: (value) {
-        if (value == null || value.isEmpty) {
+        if (value == null || value.trim().isEmpty) {
           return 'Por favor, confirme sua senha';
         }
         if (value != _senha) {
           return 'As senhas não coincidem';
         }
-        _confirmationPassword = value;
         return null;
       },
     );
