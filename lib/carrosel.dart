@@ -13,7 +13,7 @@ class Carrosel extends StatefulWidget {
 }
 
 class _CarroselState extends State<Carrosel> {
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
   int _currentPage = 0;
 
   final List<Widget> _pages = [
@@ -72,7 +72,7 @@ class _CarroselState extends State<Carrosel> {
     if (_currentPage < _pages.length - 1) {
       _pageController.animateToPage(
         ++_currentPage,
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     } else {

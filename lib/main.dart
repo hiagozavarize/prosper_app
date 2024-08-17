@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prosper/carrosel.dart';
 import 'package:prosper/gif_screen.dart';
+import 'package:prosper/ranking.dart';
 import 'package:prosper/login.dart';
 import 'package:prosper/widgets/nav_bar.dart';
 import 'package:prosper/utils/app_colors.dart';
@@ -22,9 +23,10 @@ class ProsperApp extends StatelessWidget {
       initialRoute: GifScreen.screenName,
       routes: {
         //colocar todas rotas para as outras páginas aqui:
-        GifScreen.screenName: (_) => const GifScreen(),
-        Welcome.screenName: (_) => const Welcome(),
-        Carrosel.screenName: (_) => const Carrosel(),
+        GifScreen.screenName: (context) => const GifScreen(),
+        Welcome.screenName: (context) => const Welcome(),
+        Carrosel.screenName: (context) => const Carrosel(),
+        Ranking.screenName: (context) => const Ranking(),
         LoginPage.screenName: (_) => const LoginPage(),
       },
       theme: ThemeData(

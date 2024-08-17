@@ -5,7 +5,9 @@ import 'package:prosper/welcome.dart';
 
 class GifScreen extends StatefulWidget {
   static const String screenName = "/gif";
-  const GifScreen({super.key});
+  final int selectedIndex;
+
+  const GifScreen({Key? key, this.selectedIndex = 0}) : super(key: key);
 
   @override
   _GifScreenState createState() => _GifScreenState();
