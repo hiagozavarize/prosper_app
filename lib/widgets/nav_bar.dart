@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prosper/gif_screen.dart';
 import 'package:prosper/ranking.dart';
+import 'package:prosper/utils/app_colors.dart';
 
 const Color navBarColor = Color(0xFF41EB05);
 

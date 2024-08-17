@@ -11,4 +11,5 @@ abstract class AppImages {
   static const String comnotification = "lib/assets/comnotificacaon.png";
   static const String search = "lib/assets/search.png";
   static const String imgCliente = "lib/assets/imagens_cliente.png";
+
 }

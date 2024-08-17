@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prosper/login.dart';
 import 'package:prosper/utils/app_images.dart';
+import 'package:prosper/utils/common.dart';
 
 class Carrosel extends StatefulWidget {
   static const String screenName = '/carrosel';
@@ -26,11 +28,8 @@ class _CarroselState extends State<Carrosel> {
             'Salve seu dinheiro',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.white,
-              fontSize: 40,
-              fontWeight: FontWeight.w800
-            ),
-          ), 
+                color: Colors.white, fontSize: 40, fontWeight: FontWeight.w800),
+          ),
         ],
       ),
     ),
@@ -44,12 +43,9 @@ class _CarroselState extends State<Carrosel> {
           const Text(
             'Cadastre seus Clientes',
             textAlign: TextAlign.center,
-            style: TextStyle( 
-              color: Colors.white,
-              fontSize: 40,
-              fontWeight: FontWeight.w800
-            ),
-          ), 
+            style: TextStyle(
+                color: Colors.white, fontSize: 40, fontWeight: FontWeight.w800),
+          ),
         ],
       ),
     ),
@@ -63,12 +59,11 @@ class _CarroselState extends State<Carrosel> {
           const Text(
             'Cuide da sua vida Financeira',
             textAlign: TextAlign.center,
-            style: TextStyle( 
-              color: Colors.white,
-              fontSize: 40,
-              fontWeight: FontWeight.w800
-            ),
-          ), 
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 40,
+                fontWeight: FontWeight.w800),
+          ),
         ],
       ),
     ),
@@ -81,6 +76,7 @@ class _CarroselState extends State<Carrosel> {
         curve: Curves.easeInOut,
       );
     } else {
+      navigatorKey.currentState!.pushNamed(LoginPage.screenName);
       // Ação quando o botão "Continuar" é pressionado na última página
       // Pode ser uma navegação para outra tela, por exemplo
     }

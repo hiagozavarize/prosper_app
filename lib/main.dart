@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prosper/carrosel.dart';
 import 'package:prosper/gif_screen.dart';
 import 'package:prosper/ranking.dart';
+import 'package:prosper/login.dart';
+import 'package:prosper/widgets/nav_bar.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/common.dart';
 import 'package:prosper/welcome.dart';
@@ -25,6 +27,7 @@ class ProsperApp extends StatelessWidget {
         Welcome.screenName: (context) => const Welcome(),
         Carrosel.screenName: (context) => const Carrosel(),
         Ranking.screenName: (context) => const Ranking(),
+        LoginPage.screenName: (_) => const LoginPage(),
       },
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
@@ -33,7 +36,7 @@ class ProsperApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primaryColor,
-            padding: const EdgeInsets.symmetric(vertical: 26.0),
+            padding: const EdgeInsets.symmetric(vertical: 13),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40.0),
             ),
