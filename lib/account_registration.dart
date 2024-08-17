@@ -4,6 +4,7 @@ import "package:google_fonts/google_fonts.dart";
 import "package:loader_overlay/loader_overlay.dart";
 import "package:prosper/login.dart";
 import "package:prosper/utils/app_images.dart";
+import "package:prosper/utils/common.dart";
 import "package:prosper/widgets/default_button.dart";
 import "package:prosper/widgets/google_button.dart";
 
@@ -31,7 +32,7 @@ class _AccountRegistrationState extends State<AccountRegistration> {
     );
 
     context.loaderOverlay.hide(); 
-    Navigator.of(context).pushNamed(LoginPage.screenName);
+    navigatorKey.currentState!.pushNamed(LoginPage.screenName);
   }
 
   @override
