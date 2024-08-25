@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prosper/gif_screen.dart';
+import 'package:prosper/ranking.dart';
 import 'package:prosper/utils/app_colors.dart';
 
 const Color navBarColor = Color(0xFF41EB05);
@@ -13,39 +15,57 @@ final List<String> navItems = [
 ];
 
 class NavBar extends StatefulWidget {
-  const NavBar({super.key});
+  final int selectedIndex;
+  const NavBar({Key? key, this.selectedIndex = 0}) : super(key: key);
 
   @override
   State<NavBar> createState() => _NavBarState();
 }
 
-// Estado da barra de navegação
 class _NavBarState extends State<NavBar> {
-  int _selectedIndex = 0; // Mudado para int em vez de final
+  late int _selectedIndex;
 
-  void _onNavItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.selectedIndex; 
   }
+  void _onNavItemTapped(int index) {
+    if (_selectedIndex == index) {
+      return;
+    }
+    setState(() {
+    _selectedIndex = index;
+  });
+
+  switch (index) {
+      case 0:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => GifScreen(selectedIndex: index)),
+        );
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, '/clientes');
+        break;
+      case 2:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Ranking(selectedIndex: index)),
+        );
+        break;
+      case 3:
+        Navigator.pushReplacementNamed(context, '/settings');
+        break;
+      default:
+        break;
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: _buildNavBar(),
-            ),
-          ],
-        ),
-      ),
-    );
+    return  _buildNavBar();
   }
 
   Widget _buildNavBar() {
