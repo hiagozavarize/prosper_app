@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prosper/account_registration.dart';
+import 'package:prosper/bot_screen.dart';
 import 'package:prosper/carrosel.dart';
 import 'package:prosper/gif_screen.dart';
 import 'package:prosper/ranking.dart';
@@ -21,7 +22,7 @@ class ProsperApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorKey,
-      initialRoute: GifScreen.screenName,
+      initialRoute: BotScreen.screenName,
       routes: {
         //colocar todas rotas para as outras páginas aqui:
         GifScreen.screenName: (context) => const GifScreen(),
@@ -29,7 +30,8 @@ class ProsperApp extends StatelessWidget {
         Carrosel.screenName: (context) => const Carrosel(),
         Ranking.screenName: (context) => const Ranking(),
         LoginPage.screenName: (_) => const LoginPage(),
-        AccountRegistration.screenName: (_) => AccountRegistration(),
+        AccountRegistration.screenName: (_) => const AccountRegistration(),
+        BotScreen.screenName: (_) => const BotScreen(),
       },
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
