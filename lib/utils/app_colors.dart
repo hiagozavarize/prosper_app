@@ -5,4 +5,5 @@ abstract class AppColors {
   static Color get scaffoldBackGroundColor =>
       const Color.fromARGB(255, 0, 0, 0);
   static Color get navBarColor => const Color(0xFF41EB05);
+  static Color get grayPrimaryColor =>const Color(0xFF282727);
 }
