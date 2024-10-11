@@ -3,10 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prosper/account_registration.dart';
 import 'package:prosper/bot_screen.dart';
 import 'package:prosper/carrosel.dart';
+import 'package:prosper/customer_profile.dart';
 import 'package:prosper/gif_screen.dart';
 import 'package:prosper/ranking.dart';
 import 'package:prosper/login.dart';
-import 'package:prosper/widgets/nav_bar.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/common.dart';
 import 'package:prosper/welcome.dart';
@@ -22,7 +22,7 @@ class ProsperApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorKey,
-      initialRoute: GifScreen.screenName,
+      initialRoute: CustomerProfile.screenName,
       routes: {
         //colocar todas rotas para as outras páginas aqui:
         GifScreen.screenName: (context) => const GifScreen(),
@@ -32,7 +32,8 @@ class ProsperApp extends StatelessWidget {
         LoginPage.screenName: (_) => const LoginPage(),
         AccountRegistration.screenName: (_) => const AccountRegistration(),
         BotScreen.screenName: (_) => const BotScreen(),
-      },
+        CustomerProfile.screenName: (_) => const CustomerProfile(),
+      }, 
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
         scaffoldBackgroundColor: AppColors.scaffoldBackGroundColor,
