@@ -22,7 +22,7 @@ class ProsperApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorKey,
-      initialRoute: CustomerProfile.screenName,
+      initialRoute: GifScreen.screenName,
       routes: {
         //colocar todas rotas para as outras páginas aqui:
         GifScreen.screenName: (context) => const GifScreen(),
