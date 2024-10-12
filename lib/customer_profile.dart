@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prosper/bot_screen.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/app_images.dart';
 
@@ -13,7 +14,6 @@ class CustomerProfile extends StatefulWidget {
 class _CustomerProfileState extends State<CustomerProfile> {
   @override
   Widget build(BuildContext context) => Container(
-    
     decoration: const BoxDecoration(
       image: DecorationImage(
         image: AssetImage(AppImages.fundo),
@@ -38,8 +38,9 @@ class _CustomerProfileState extends State<CustomerProfile> {
       ),
       body: Column(
         children: [
+          // Avatar e nome do cliente
           Container(
-            padding: EdgeInsets.only(top: 70),
+            padding: const EdgeInsets.only(top: 70),
             child: const Center(
               child: Column(
                 children: [
@@ -56,7 +57,7 @@ class _CustomerProfileState extends State<CustomerProfile> {
                     'Menina Veneno',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 22,
+                      fontSize: 26,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -64,7 +65,8 @@ class _CustomerProfileState extends State<CustomerProfile> {
               ),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
+              
           Container(
             height: 200,
             width: 350,
@@ -72,11 +74,82 @@ class _CustomerProfileState extends State<CustomerProfile> {
               color: Colors.grey[900],
               borderRadius: const BorderRadius.all(Radius.circular(20)),
             ),
-          ),
-          // Adicionamos o Spacer aqui para controlar o espaço superior do Container cinza
-          const Spacer(), 
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center, // Alinha verticalmente ao centro
+                    children: [
+                      Image.asset(AppImages.whatsapp, color: Colors.white, fit: BoxFit.fitWidth, height:40),
+                      const SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Telefone',
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                          const SizedBox(height: 8),
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.grey[700], // Cor de fundo atrás do número
+                              borderRadius: BorderRadius.circular(8), // Borda arredondada
+                            ),
+                            child: const Text(
+                              '(99) 99999-9999',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center, // Alinha verticalmente ao centro
+                    children: [
+                      Image(image:AssetImage(AppImages.idCard), color: Colors.white,  fit: BoxFit.fitWidth, height: 30),
+                      const SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'CPF',
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                          const SizedBox(height: 8),
+                          Container(
+                            width: 240,
+                            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.grey[700], // Cor de fundo atrás do CPF
+                              borderRadius: BorderRadius.circular(8), // Borda arredondada
+                            ),
+                            child: const Text(
+                              '123.456.789-01',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),// Espaço para empurrar o conteúdo para baixo
+          const Spacer(),
+          // Historico de compras
           Container(
-            height: 450, // Definimos uma altura específica para o container cinza
+            height: 450, // Altura do container cinza
             decoration: BoxDecoration(
               color: Colors.grey[900],
               borderRadius: const BorderRadius.only(
@@ -140,7 +213,12 @@ class _CustomerProfileState extends State<CustomerProfile> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const BotScreen()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryColor,
                       padding: const EdgeInsets.symmetric(
