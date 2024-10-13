@@ -15,5 +15,6 @@ abstract class AppImages {
   static const String person = "lib/assets/person.png";
   static const String fundo = "lib/assets/fundo.png";
   static const String sacola_compras = "lib/assets/Sacola_compras.png";
-
+  static const String whatsapp= "lib/assets/whatsapp.png";
+  static const String idCard = "lib/assets/idCard.png";
 }
