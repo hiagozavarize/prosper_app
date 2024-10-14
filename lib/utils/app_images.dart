@@ -17,4 +17,6 @@ abstract class AppImages {
   static const String sacola_compras = "lib/assets/Sacola_compras.png";
   static const String whatsapp= "lib/assets/whatsapp.png";
   static const String idCard = "lib/assets/idCard.png";
+  static const String penName = "lib/assets/penName.png";
+  static const String circlePen = "lib/assets/circlePen.png";
 }
