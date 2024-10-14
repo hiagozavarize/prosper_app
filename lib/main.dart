@@ -7,6 +7,7 @@ import 'package:prosper/customer_profile.dart';
 import 'package:prosper/gif_screen.dart';
 import 'package:prosper/ranking.dart';
 import 'package:prosper/login.dart';
+import 'package:prosper/user_profile.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/common.dart';
 import 'package:prosper/welcome.dart';
@@ -22,7 +23,7 @@ class ProsperApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorKey,
-      initialRoute: GifScreen.screenName,
+      initialRoute: UserProfile.screenName,
       routes: {
         //colocar todas rotas para as outras páginas aqui:
         GifScreen.screenName: (context) => const GifScreen(),
@@ -33,6 +34,7 @@ class ProsperApp extends StatelessWidget {
         AccountRegistration.screenName: (_) => const AccountRegistration(),
         BotScreen.screenName: (_) => const BotScreen(),
         CustomerProfile.screenName: (_) => const CustomerProfile(),
+        UserProfile.screenName: (_) => const UserProfile(),
       }, 
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),

@@ -1,10 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:prosper/utils/app_colors.dart';
-import 'package:prosper/utils/app_images.dart';
 import 'package:prosper/utils/utils.dart';
 import 'package:prosper/widgets/nav_bar.dart';
 
@@ -12,7 +6,7 @@ class Ranking extends StatelessWidget {
   static const String screenName = "/ranking";
   final int selectedIndex;
 
-  const Ranking({Key? key, this.selectedIndex = 2}) : super(key: key);
+  const Ranking({super.key, this.selectedIndex = 2});
   
   @override
   Widget build(BuildContext context) {
