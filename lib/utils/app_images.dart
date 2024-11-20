@@ -1,5 +1,8 @@
 abstract class AppImages {
   static const String logoProsper = "lib/assets/logo_prosper.png";
+  static const String fundo = "lib/assets/fundo.png";
+  static const String botImg = "lib/assets/bot.png";
+  static const String person = "lib/assets/person.png";
   static const String gifProsper = "lib/assets/logo_video.gif";
   static const String illustration1 = "lib/assets/illustration01.png";
   static const String illustration2 = "lib/assets/illustration02.png";
@@ -9,6 +12,10 @@ abstract class AppImages {
   static const String logozinha = "lib/assets/logozinha.png";
   static const String nonotification = "lib/assets/nonotificacao.png";
   static const String comnotification = "lib/assets/comnotificacaon.png";
+  static const String whatsapp = "lib/assets/whatsapp.png";
+  static const String idCard = "lib/assets/idCard.png";
+  static const String circlePen = "lib/assets/circlePen.png";
+  static const String penName = "lib/assets/penName.png";
   static const String search = "lib/assets/search.png";
   static const String imgCliente = "lib/assets/imagens_cliente.png";
   static const String comnotificacaonwhite= "lib/assets/comnotificacaoWhite.png";
