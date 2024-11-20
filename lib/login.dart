@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
 
     context.loaderOverlay.show();
 
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Processando login...')),
@@ -48,7 +48,11 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return LoaderOverlay(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: LoaderOverlay(
       useDefaultLoading: true,
       child: Scaffold(
         body: SingleChildScrollView(
@@ -149,6 +153,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+    ),
     );
   }
 
