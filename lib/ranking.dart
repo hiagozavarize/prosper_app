@@ -10,7 +10,7 @@ class Ranking extends StatefulWidget {
   const Ranking({super.key, this.selectedIndex = 2});
 
   @override
-  _RankingState createState() => _RankingState();
+  State<Ranking> createState() => _RankingState();
 }
 
 class _RankingState extends State<Ranking> {
