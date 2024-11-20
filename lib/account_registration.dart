@@ -1,4 +1,3 @@
-import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:loader_overlay/loader_overlay.dart";
@@ -25,7 +24,7 @@ class _AccountRegistrationState extends State<AccountRegistration> {
 
     context.loaderOverlay.show(); 
 
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Cadastro realizado com sucesso!')),
@@ -37,7 +36,11 @@ class _AccountRegistrationState extends State<AccountRegistration> {
 
   @override
   Widget build(BuildContext context) {
-    return LoaderOverlay(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: LoaderOverlay(
       useDefaultLoading: true,
       child: Scaffold(
         appBar: AppBar(
@@ -119,6 +122,7 @@ class _AccountRegistrationState extends State<AccountRegistration> {
           ),
         ),
       ),
+    ),
     );
   }
 

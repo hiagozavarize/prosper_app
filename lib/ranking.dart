@@ -1,16 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:prosper/utils/utils.dart';
+import 'package:prosper/utils/app_colors.dart';
+import 'package:prosper/utils/app_images.dart';
 import 'package:prosper/widgets/nav_bar.dart';
 
-class Ranking extends StatelessWidget {
+class Ranking extends StatefulWidget {
   static const String screenName = "/ranking";
   final int selectedIndex;
 
   const Ranking({super.key, this.selectedIndex = 2});
-  
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  State<Ranking> createState() => _RankingState();
+}
+
+class _RankingState extends State<Ranking> {
+  List<Map<String, dynamic>> allClients = [
+    {'name': 'Ana Clara', 'debt': 100.0},
+    {'name': 'João Pedro', 'debt': 90.0},
+    {'name': 'Maria Silva', 'debt': 80.0},
+    {'name': 'Pedro', 'debt': 20.0},
+    {'name': 'Marta', 'debt': 120.0},
+    // Adicione mais clientes aqui
+  ];
+
+  List<Map<String, dynamic>> displayedClients = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _sortClients();
+    displayedClients = List.from(allClients); // Inicializa com todos os clientes
+  }
+
+  void _sortClients() {
+    // Ordena os clientes pelo valor da dívida, em ordem decrescente
+    allClients.sort((a, b) => b['debt'].compareTo(a['debt']));
+
+    // Atualiza a posição de cada cliente com base na nova ordem
+    for (int i = 0; i < allClients.length; i++) {
+      allClients[i]['position'] = i + 1;
+    }
+  }
+
+  void _searchClient(String query) {
+    setState(() {
+      if (query.isEmpty) {
+        displayedClients = List.from(allClients);
+      } else {
+        displayedClients = allClients
+            .where((client) => client['name']
+                .toString()
+                .toLowerCase()
+                .contains(query.toLowerCase()))
+            .toList();
+      }
+    });
+  }
+
+  @override
+Widget build(BuildContext context) {
+  return GestureDetector(
+    onTap: () {
+      // Remove o foco do campo de texto
+      FocusScope.of(context).unfocus();
+    },
+    child: Scaffold(
       appBar: AppBar(
         leading: Image.asset(AppImages.logozinha),
         title: const Text(
@@ -38,13 +92,17 @@ class Ranking extends StatelessWidget {
               children: [
                 SizedBox(
                   child: Image.asset(
-                    AppImages.trofeus, 
+                    AppImages.trofeus,
                     height: 92,
                     width: 140,
                     fit: BoxFit.fitWidth,
                   ),
                 ),
                 TextField(
+                  onChanged: _searchClient, // Atualiza a busca ao digitar
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
                   decoration: InputDecoration(
                     prefixIcon: Padding(
                       padding: const EdgeInsets.only(left: 24, right: 10),
@@ -58,118 +116,92 @@ class Ranking extends StatelessWidget {
                       ),
                     ),
                     labelText: 'Pesquisar cliente',
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color: Color(0xFFAAA4A4),
                       fontSize: 24,
                     ),
                     filled: true,
-                    fillColor: Color(0xFF282727),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                    fillColor: const Color(0xFF282727),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     focusedBorder: OutlineInputBorder(
                       gapPadding: 8.0,
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: AppColors.primaryColor),
                     ),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                    contentPadding:
+                        const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                   ),
                 ),
-                SizedBox(height: 10), // Adicione um SizedBox para o espaçamento
+                const SizedBox(height: 10),
                 Expanded(
-                  child: Stack(
-                    children: [
-                      ListView.builder(
-                        itemCount: 20,
-                        itemBuilder: (context, index) {
-                          // Defina uma lista com cores para os 3 primeiros itens
-                          final List<Color> leadingColors = [
-                            Color(0xFFFFC700),    // Cor para o 1º item
-                            Color(0XFFC1BFB8),  // Cor para o 2º item
-                            Color(0xFFD38301),   // Cor para o 3º item
-                          ];
-                          Color leadingColor = index < 3
-                              ? leadingColors[index]
-                              : AppColors.primaryColor; 
-
-                          return Container(
-                            margin: EdgeInsets.symmetric(vertical: 8.0),
-                            decoration: BoxDecoration(
-                              color: Color(0xFF333333),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: SizedBox(
-                              height: 56,
-                              child: ListTile(
-                                contentPadding: EdgeInsets.only(right: 12,),
-                                leading: Container(
-                                  width: 46,
-                                  height: 60,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: leadingColor, 
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    '${index + 1}°',
-                                    style: const TextStyle(
-                                      color: Colors.white, 
-                                      fontSize: 21,
-                                      fontWeight: FontWeight.w900,
-                                    ),
-                                  ),
+                  child: ListView.builder(
+                    itemCount: displayedClients.length,
+                    itemBuilder: (context, index) {
+                      final client = displayedClients[index];
+                      return Container(
+                        margin: const EdgeInsets.symmetric(vertical: 8.0),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF333333),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: SizedBox(
+                          height: 56,
+                          child: ListTile(
+                            contentPadding: const EdgeInsets.only(right: 12),
+                            leading: Container(
+                              width: 46,
+                              height: 60,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: client['position'] <= 3
+                                    ? _getLeadingColor(client['position'])
+                                    : AppColors.primaryColor,
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  bottomLeft: Radius.circular(10),
                                 ),
-                                title: Row(
-                                  children: [
-                                    Image.asset(
-                                      AppImages.imgCliente, 
-                                      width: 40,
-                                      height: 40, 
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Expanded(
-                                      child: Text(
-                                        'Menina Veneno',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ),
-                                  ]
+                              ),
+                              child: Text(
+                                '${client['position']}°',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w900,
                                 ),
-                                trailing: Text(
-                                  " -${index * 10 + 10},00",
-                                  style: const TextStyle(
-                                    color: Color(0xFFE74500),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                ),
-                                textColor: Colors.white,
                               ),
                             ),
-                          );
-                        },
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Container(
-                          height: 40, // Ajuste a altura conforme necessário
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [Colors.black.withOpacity(0.1), Colors.black],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              stops: [0.0, 0.85], // Ajuste o ponto onde a opacidade começa a mudar
+                            title: Row(children: [
+                              Image.asset(
+                                AppImages.imgCliente,
+                                width: 40,
+                                height: 40,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  client['name'],
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ]),
+                            trailing: Text(
+                              "-R\$ ${client['debt'].toStringAsFixed(2)}",
+                              style: const TextStyle(
+                                color: Color(0xFFE74500),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                              ),
                             ),
+                            textColor: Colors.white,
                           ),
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 ),
               ],
@@ -177,8 +209,21 @@ class Ranking extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: NavBar(selectedIndex: selectedIndex),
-    );
-  }
+      bottomNavigationBar: NavBar(selectedIndex: widget.selectedIndex),
+    ),
+  );
 }
 
+  Color _getLeadingColor(int position) {
+    switch (position) {
+      case 1:
+        return const Color(0xFFFFC700); // Ouro
+      case 2:
+        return const Color(0XFFC1BFB8); // Prata
+      case 3:
+        return const Color(0xFFD38301); // Bronze
+      default:
+        return AppColors.primaryColor; // Padrão
+    }
+  }
+}

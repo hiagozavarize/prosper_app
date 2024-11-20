@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:prosper/account_registration.dart';
+import 'package:prosper/home.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/app_images.dart';
 import 'package:prosper/utils/common.dart';
@@ -28,13 +29,14 @@ class _LoginPageState extends State<LoginPage> {
 
     context.loaderOverlay.show();
 
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Processando login...')),
     );
 
     context.loaderOverlay.hide();
+    navigatorKey.currentState!.pushNamed(HomeScreen.screenName);
   }
 
   @override
@@ -46,7 +48,11 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return LoaderOverlay(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: LoaderOverlay(
       useDefaultLoading: true,
       child: Scaffold(
         body: SingleChildScrollView(
@@ -147,6 +153,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+    ),
     );
   }
 

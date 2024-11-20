@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prosper/account_registration.dart';
-import 'package:prosper/bot_screen.dart';
 import 'package:prosper/carrosel.dart';
-import 'package:prosper/customer_profile.dart';
 import 'package:prosper/gif_screen.dart';
+import 'package:prosper/home.dart';
 import 'package:prosper/ranking.dart';
 import 'package:prosper/login.dart';
-import 'package:prosper/user_profile.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/common.dart';
 import 'package:prosper/welcome.dart';
@@ -31,11 +29,9 @@ class ProsperApp extends StatelessWidget {
         Carrosel.screenName: (context) => const Carrosel(),
         Ranking.screenName: (context) => const Ranking(),
         LoginPage.screenName: (_) => const LoginPage(),
-        AccountRegistration.screenName: (_) => const AccountRegistration(),
-        BotScreen.screenName: (_) => const BotScreen(),
-        CustomerProfile.screenName: (_) => const CustomerProfile(),
-        UserProfile.screenName: (_) => const UserProfile(),
-      }, 
+        AccountRegistration.screenName: (_) => AccountRegistration(),
+        HomeScreen.screenName: (_) => HomeScreen(),
+      },
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
         scaffoldBackgroundColor: AppColors.scaffoldBackGroundColor,

@@ -10,7 +10,7 @@ class GifScreen extends StatefulWidget {
   const GifScreen({Key? key, this.selectedIndex = 0}) : super(key: key);
 
   @override
-  _GifScreenState createState() => _GifScreenState();
+  State<GifScreen> createState() => _GifScreenState();
 }
 
 class _GifScreenState extends State<GifScreen> {
