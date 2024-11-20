@@ -116,9 +116,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      PeriodButton(text: "Mês"),
-                      const SizedBox(width: 25),
                       PeriodButton(text: "Semana"),
+                      const SizedBox(width: 25),
+                      PeriodButton(text: "Mês"),
                       const SizedBox(width: 25),
                       PeriodButton(text: "Ano"),
                     ],
