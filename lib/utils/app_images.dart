@@ -12,4 +12,8 @@ abstract class AppImages {
   static const String search = "lib/assets/search.png";
   static const String imgCliente = "lib/assets/imagens_cliente.png";
   static const String comnotificacaonwhite= "lib/assets/comnotificacaoWhite.png";
+  static const String graphic_icon = "lib/assets/graphic-icon.png";
+  static const String money_icon = "lib/assets/money-icon.png";
+  static const String bg_periodButton = "lib/assets/backgroundPeriodButton.png";
+  static const String bg_noselectedperiodButton = "lib/assets/noSelectedBgPeriodButton.png";
 }
