@@ -6,7 +6,6 @@ import 'package:prosper/gif_screen.dart';
 import 'package:prosper/home.dart';
 import 'package:prosper/ranking.dart';
 import 'package:prosper/login.dart';
-import 'package:prosper/widgets/nav_bar.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/common.dart';
 import 'package:prosper/welcome.dart';
