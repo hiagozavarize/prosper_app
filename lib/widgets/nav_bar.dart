@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:prosper/gif_screen.dart';
+import 'package:prosper/home.dart';
 import 'package:prosper/ranking.dart';
 import 'package:prosper/utils/app_colors.dart';
 
@@ -16,7 +15,7 @@ final List<String> navItems = [
 
 class NavBar extends StatefulWidget {
   final int selectedIndex;
-  const NavBar({Key? key, this.selectedIndex = 0}) : super(key: key);
+  const NavBar({super.key, this.selectedIndex = 0});
 
   @override
   State<NavBar> createState() => _NavBarState();
@@ -28,88 +27,81 @@ class _NavBarState extends State<NavBar> {
   @override
   void initState() {
     super.initState();
-    _selectedIndex = widget.selectedIndex; 
+    _selectedIndex = widget.selectedIndex;
   }
-  void _onNavItemTapped(int index) {
-    if (_selectedIndex == index) {
-      return;
-    }
-    setState(() {
-    _selectedIndex = index;
-  });
 
-  switch (index) {
+  void _onNavItemTapped(int index) {
+    if (_selectedIndex == index) return;
+
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    // Navegação condicional baseada no índice
+    switch (index) {
       case 0:
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => GifScreen(selectedIndex: index)),
-        );
+        Navigator.pushReplacementNamed(context, HomeScreen.screenName);
         break;
       case 1:
-        Navigator.pushReplacementNamed(context, '/clientes');
+        // Navigator.pushReplacementNamed(context, '/clientes'); // Adicione a rota correta aqui
         break;
       case 2:
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => Ranking(selectedIndex: index)),
-        );
+        Navigator.pushReplacementNamed(context, Ranking.screenName);
         break;
       case 3:
-        Navigator.pushReplacementNamed(context, '/settings');
+        // Navigator.pushReplacementNamed(context, '/settings');
         break;
       default:
         break;
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return  _buildNavBar();
+    return _buildNavBar();
   }
 
   Widget _buildNavBar() {
     return Padding(
-      padding: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       child: Material(
         borderRadius: BorderRadius.circular(20),
         color: Colors.transparent,
         elevation: 10,
         child: Container(
-          width: 46 * 18, // Largura total da barra
-          height: 70,     // Altura total da barra
+          height: 70,
           decoration: BoxDecoration(
             color: navBarColor,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: List.generate(
               navItems.length,
               (index) => GestureDetector(
                 onTap: () => _onNavItemTapped(index),
-                child: Container(
-                  padding: EdgeInsets.only(bottom: 10),
-                  margin: EdgeInsets.only(top: 10),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.easeInOut,
+                  padding: const EdgeInsets.only(bottom: 10),
+                  margin: const EdgeInsets.only(top: 10),
                   width: 46,
-                  height: 70, // Altura da caixa de seleção
+                  height: 70,
                   decoration: BoxDecoration(
                     color: _selectedIndex == index
-                        ? Color(0xFFACFF88)
+                        ? const Color(0xFFACFF88)
                         : Colors.transparent,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
-                    ), // Ajuste o valor conforme necessário
+                    ),
                   ),
                   child: Center(
                     child: SvgPicture.asset(
                       navItems[index],
-                      width: 32, // Largura do ícone
-                      height: 32, // Altura do ícone para garantir proporção fixa
+                      width: 32,
+                      height: 32,
                       fit: BoxFit.contain,
-                      
                     ),
                   ),
                 ),
