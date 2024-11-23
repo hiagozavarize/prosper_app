@@ -5,7 +5,9 @@ import 'package:prosper/utils/app_images.dart';
 
 class CustomerProfile extends StatefulWidget {
   static const String screenName = '/customerProfile';
-  const CustomerProfile({super.key});
+  final int selectedIndex;
+
+  const CustomerProfile({super.key, this.selectedIndex = 3});
 
   @override
   State<CustomerProfile> createState() => _CustomerProfileState();

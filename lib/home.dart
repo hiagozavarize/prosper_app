@@ -9,7 +9,7 @@ import "package:prosper/widgets/nav_bar.dart";
 class HomeScreen extends StatefulWidget {
   static const String screenName = '/home';
   final int selectedIndex;
-  const HomeScreen({super.key, this.selectedIndex = 1});
+  const HomeScreen({super.key, this.selectedIndex = 0});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

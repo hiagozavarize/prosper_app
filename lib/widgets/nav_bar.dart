@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prosper/customer_profile.dart';
 import 'package:prosper/home.dart';
 import 'package:prosper/ranking.dart';
 import 'package:prosper/utils/app_colors.dart';
@@ -43,13 +44,13 @@ class _NavBarState extends State<NavBar> {
         Navigator.pushReplacementNamed(context, HomeScreen.screenName);
         break;
       case 1:
-        // Navigator.pushReplacementNamed(context, '/clientes'); // Adicione a rota correta aqui
+        // Navigator.pushReplacementNamed(context, CustomerProfile.screenName); // Adicione a rota correta aqui
         break;
       case 2:
         Navigator.pushReplacementNamed(context, Ranking.screenName);
         break;
       case 3:
-        // Navigator.pushReplacementNamed(context, '/settings');
+        Navigator.pushReplacementNamed(context, CustomerProfile.screenName);
         break;
       default:
         break;
