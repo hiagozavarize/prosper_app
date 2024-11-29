@@ -29,7 +29,7 @@ class ProsperApp extends StatelessWidget {
         Carrosel.screenName: (context) => const Carrosel(),
         Ranking.screenName: (context) => const Ranking(),
         LoginPage.screenName: (_) => const LoginPage(),
-        AccountRegistration.screenName: (_) => AccountRegistration(),
+        AccountRegistration.screenName: (_) =>  AccountRegistration(),
         HomeScreen.screenName: (_) => HomeScreen(),
       },
       theme: ThemeData(
