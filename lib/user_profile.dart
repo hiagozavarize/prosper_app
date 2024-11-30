@@ -3,30 +3,37 @@ import 'package:flutter/widgets.dart';
 import 'package:prosper/utils/app_images.dart';
 import 'package:prosper/widgets/nav_bar.dart';
 
-class UserProfile extends StatelessWidget {
+class UserProfile extends StatefulWidget {
   static const String screenName = "/profile";
   final int selectedIndex;
 
-  const UserProfile({super.key, this.selectedIndex = 3});
+  UserProfile({super.key, this.selectedIndex = 3});
+
+  @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
+  bool isAparenceChanged = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true, // Permite que o body se estenda por baixo da NavBar
+      extendBody: true,
       appBar: AppBar(
-        title: const Text(
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        title: Text(
           'Perfil',
           style: TextStyle(
             color: Color(0xFF37D100),
             fontSize: 26,
             fontWeight: FontWeight.w800,
           ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      ),), // Permite que o body se estenda por baixo da NavBar
       body: Stack(
+        alignment: Alignment.topCenter,
         children: [
           Column(
             children: [
@@ -105,17 +112,22 @@ class UserProfile extends StatelessWidget {
                                   style: TextStyle(color: Colors.white, fontSize: 18),
                                 ),
                                 trailing: Switch(
-                                  value: false,
+                                  value: isAparenceChanged,
                                   onChanged: (value) {
-                                    
+                                    setState(() {
+                                      isAparenceChanged = value;
+                                    });
                                   },
-                                  activeColor: Color(0xFF37D100),
+                                  activeColor: Colors.black,
+                                  inactiveTrackColor: Colors.white,
+                                  activeTrackColor: Colors.black,
+                                  inactiveThumbColor: Colors.white,
+                                  
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(horizontal: 0),
                                 minLeadingWidth: 0,
                                 onTap: () {
-                                  // Ação ao tocar no botão
-                                  print('Alterar aparência tocado');
+                                  // nãoo sei oq tem q colocar aqui
                                 },
                               ),
                               const Divider(color: Colors.white),
@@ -172,7 +184,7 @@ class UserProfile extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: NavBar(selectedIndex: selectedIndex),
+      bottomNavigationBar: NavBar(selectedIndex: widget.selectedIndex),
     );
   }
 }
