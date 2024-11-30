@@ -87,8 +87,8 @@ Widget build(BuildContext context) {
           Padding(
             padding: const EdgeInsets.only(left: 18, right: 18),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   child: Image.asset(
@@ -104,15 +104,13 @@ Widget build(BuildContext context) {
                     color: Colors.white,
                   ),
                   decoration: InputDecoration(
+                    alignLabelWithHint: true,
                     prefixIcon: Padding(
-                      padding: const EdgeInsets.only(left: 24, right: 10),
-                      child: Container(
-                        padding: const EdgeInsets.only(bottom: 4.0),
-                        child: Image.asset(
-                          AppImages.search,
-                          width: 24,
-                          height: 24,
-                        ),
+                      padding: const EdgeInsets.only(left: 24, right: 18,),
+                      child: Image.asset(
+                        AppImages.search,
+                        width: 24,
+                        height: 24,
                       ),
                     ),
                     labelText: 'Pesquisar cliente',
@@ -131,7 +129,7 @@ Widget build(BuildContext context) {
                       borderSide: BorderSide(color: AppColors.primaryColor),
                     ),
                     contentPadding:
-                        const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                        const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                   ),
                 ),
                 const SizedBox(height: 10),
