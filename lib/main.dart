@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prosper/account_registration.dart';
 import 'package:prosper/carrosel.dart';
+import 'package:prosper/customer_profile.dart';
 import 'package:prosper/gif_screen.dart';
 import 'package:prosper/home.dart';
 import 'package:prosper/ranking.dart';
 import 'package:prosper/login.dart';
+import 'package:prosper/user_profile.dart';
 import 'package:prosper/utils/app_colors.dart';
 import 'package:prosper/utils/common.dart';
 import 'package:prosper/welcome.dart';
@@ -31,6 +33,8 @@ class ProsperApp extends StatelessWidget {
         LoginPage.screenName: (_) => const LoginPage(),
         AccountRegistration.screenName: (_) => AccountRegistration(),
         HomeScreen.screenName: (_) => HomeScreen(),
+        CustomerProfile.screenName: (_) => CustomerProfile(),
+        UserProfile.screenName: (_) => UserProfile(),
       },
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
