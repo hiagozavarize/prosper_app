@@ -3,9 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prosper/customer_profile.dart';
 import 'package:prosper/home.dart';
 import 'package:prosper/ranking.dart';
+import 'package:prosper/user_profile.dart';
 import 'package:prosper/utils/app_colors.dart';
-
-const Color navBarColor = Color(0xFF41EB05);
 
 final List<String> navItems = [
   'lib/assets/home.svg',
@@ -50,7 +49,7 @@ class _NavBarState extends State<NavBar> {
         Navigator.pushReplacementNamed(context, Ranking.screenName);
         break;
       case 3:
-        Navigator.pushReplacementNamed(context, CustomerProfile.screenName);
+        Navigator.pushReplacementNamed(context, UserProfile.screenName);
         break;
       default:
         break;
@@ -72,7 +71,7 @@ class _NavBarState extends State<NavBar> {
         child: Container(
           height: 70,
           decoration: BoxDecoration(
-            color: navBarColor,
+            color: AppColors.navBarColor,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
