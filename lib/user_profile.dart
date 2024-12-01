@@ -135,7 +135,7 @@ class _UserProfileState extends State<UserProfile> {
                                 leading: Icon(Icons.help_outline, color: Colors.white),
                                 title: const Text(
                                   'Ajuda',
-                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                  style: TextStyle(color: Colors.white, fontSize: 18),
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(horizontal: 0),
                                 minLeadingWidth: 0,
@@ -149,7 +149,7 @@ class _UserProfileState extends State<UserProfile> {
                                 leading: Icon(Icons.info_outline, color: Colors.white),
                                 title: const Text(
                                   'Sobre',
-                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                  style: TextStyle(color: Colors.white, fontSize: 18),
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(horizontal: 0),
                                 minLeadingWidth: 0,
@@ -163,7 +163,7 @@ class _UserProfileState extends State<UserProfile> {
                                 leading: Icon(Icons.logout, color: Colors.white),
                                 title: const Text(
                                   'Sair',
-                                  style: TextStyle(color: Colors.white, fontSize: 20),
+                                  style: TextStyle(color: Colors.white, fontSize: 18),
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(horizontal: 0),
                                 minLeadingWidth: 0,
