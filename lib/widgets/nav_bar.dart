@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:prosper/customer_profile.dart';
 import 'package:prosper/home.dart';
 import 'package:prosper/ranking.dart';
 import 'package:prosper/user_profile.dart';
