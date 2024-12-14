@@ -87,8 +87,6 @@ Widget build(BuildContext context) {
           Padding(
             padding: const EdgeInsets.only(left: 18, right: 18),
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   child: Image.asset(
