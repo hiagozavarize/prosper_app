@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prosper/customers.dart';
 import 'package:prosper/home.dart';
 import 'package:prosper/ranking.dart';
 import 'package:prosper/user_profile.dart';
@@ -22,6 +23,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   late int _selectedIndex;
+  int? _previousIndex;
 
   @override
   void initState() {
@@ -29,30 +31,48 @@ class _NavBarState extends State<NavBar> {
     _selectedIndex = widget.selectedIndex;
   }
 
+  final List<Widget> screens = [
+    HomeScreen(),
+    Customers(),
+    Ranking(),
+    UserProfile(),
+  ];
+
   void _onNavItemTapped(int index) {
     if (_selectedIndex == index) return;
+
+    // Salvar o índice anterior antes de atualizar o atual
+    _previousIndex = _selectedIndex;
 
     setState(() {
       _selectedIndex = index;
     });
 
-    // Navegação condicional baseada no índice
-    switch (index) {
-      case 0:
-        Navigator.pushReplacementNamed(context, HomeScreen.screenName);
-        break;
-      case 1:
-        // Navigator.pushReplacementNamed(context, CustomerProfile.screenName); // Adicione a rota correta aqui
-        break;
-      case 2:
-        Navigator.pushReplacementNamed(context, Ranking.screenName);
-        break;
-      case 3:
-        Navigator.pushReplacementNamed(context, UserProfile.screenName);
-        break;
-      default:
-        break;
-    }
+    final Widget nextScreen = screens[index];
+
+    // Verifica a direção da transição com base nos índices
+    final Offset beginOffset = (_previousIndex ?? 0) < _selectedIndex
+        ? Offset(1.0, 0.0) // Da direita para a esquerda
+        : Offset(-1.0, 0.0); // Da esquerda para a direita
+
+    Navigator.of(context).pushReplacement(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return SlideTransition(
+            position: Tween<Offset>(begin: beginOffset, end: Offset.zero)
+                .animate(animation),
+            child: nextScreen,
+          );
+        },
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return SlideTransition(
+            position: Tween<Offset>(begin: beginOffset, end: Offset.zero)
+                .animate(animation),
+            child: child,
+          );
+        },
+      ),
+    );
   }
 
   @override

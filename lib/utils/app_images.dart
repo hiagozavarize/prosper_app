@@ -23,4 +23,7 @@ abstract class AppImages {
   static const String money_icon = "lib/assets/money-icon.png";
   static const String bg_periodButton = "lib/assets/backgroundPeriodButton.png";
   static const String bg_noselectedperiodButton = "lib/assets/noSelectedBgPeriodButton.png";
+  static const String add_button = "lib/assets/add-button.png";
+  static const String money_icon_customer = "lib/assets/tdesign_money.png";
+  static const String customer_image = "lib/assets/imagem_cliente.png";
 }

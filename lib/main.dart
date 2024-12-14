@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prosper/account_registration.dart';
 import 'package:prosper/carrosel.dart';
 import 'package:prosper/customer_profile.dart';
+import 'package:prosper/customers.dart';
 import 'package:prosper/gif_screen.dart';
 import 'package:prosper/home.dart';
 import 'package:prosper/ranking.dart';
@@ -35,6 +36,7 @@ class ProsperApp extends StatelessWidget {
         HomeScreen.screenName: (_) => HomeScreen(),
         CustomerProfile.screenName: (_) => CustomerProfile(),
         UserProfile.screenName: (_) => UserProfile(),
+        Customers.screenName: (_) => Customers(),
       },
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
